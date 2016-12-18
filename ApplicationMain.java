@@ -49,8 +49,8 @@ public class ApplicationMain extends JFrame implements KeyListener {
     	PlayerAi.hp = 75;
     	PlayerAi.stamina = 20;
     	PlayerAi.mana = 10;
-    	PlayerAi.Attack = 10;
-    	PlayerAi.Defense = 5;
+    	PlayerAi.attack = 10;
+    	PlayerAi.defense = 5;
     	PlayerAi.critical= 10.00;
     	
     	
@@ -61,6 +61,7 @@ public class ApplicationMain extends JFrame implements KeyListener {
     	PlayerAi.luck = 3;
     	PlayerAi.insight = 3;
     	PlayerAi.xp = 0;
+    	PlayerAi.reqXp = 1;
     	
     	
     	
