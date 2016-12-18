@@ -77,7 +77,10 @@ public class World {
 	//Remove
 	public void remove(Creature other) {
 	    creatures.remove(other);
-	    PlayerAi.xp++;
+	    
+	    //Exp reward
+	    PlayerAi.xp += other.xp();
+	    
 	}
 	
 	//Update
@@ -87,3 +90,4 @@ public class World {
 	    }
 	}
 }
+
