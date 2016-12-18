@@ -15,11 +15,11 @@ public class CreatureFactory {
     
     //Player
     public Creature newPlayer(List<String> messages){
-        Creature player = new Creature(world, "Player", 'A', AsciiPanel.brightWhite, 0, 0, 0, 0);
+        Creature player = new Creature(world, "Player", 'A', AsciiPanel.brightWhite, 0, 0, 0, 0, 0);
         player.setMaxHP(PlayerAi.MaxHP);
         player.setHP(PlayerAi.hp);
-        player.setAtt(PlayerAi.Attack);
-        player.setDef(PlayerAi.Defense);
+        player.setAtt(PlayerAi.attack);
+        player.setDef(PlayerAi.defense);
         player.setCrit(PlayerAi.critical);
         
         
@@ -30,7 +30,7 @@ public class CreatureFactory {
     
     //Fungus
     public Creature newFungus(){
-        Creature fungus = new Creature(world, "Fungus", 'f', AsciiPanel.green, 25, 5, 0, 0);
+        Creature fungus = new Creature(world, "Fungus", 'f', AsciiPanel.green, 25, 5, 0, 0, 1);
         world.addAtEmptyLocation(fungus);
         new FungusAi(fungus, null);
         return fungus;
@@ -38,7 +38,7 @@ public class CreatureFactory {
     
   //Goblin
     public Creature newGoblin(){
-        Creature goblin = new Creature(world, "Goblin", 'G', AsciiPanel.brightGreen, 45, 10, 3, 0);
+        Creature goblin = new Creature(world, "Goblin", 'G', AsciiPanel.brightGreen, 45, 10, 3, 0, 3);
         world.addAtEmptyLocation(goblin);
         new GoblinAi(goblin);
         return goblin;
