@@ -16,7 +16,7 @@ public class Creature {
     public Color color() { return color; }
 
     //Constructor
-    public Creature(World world, String name, char glyph, Color color, int maxHp, int attack, int defense, double critical){
+    public Creature(World world, String name, char glyph, Color color, int maxHp, int attack, int defense, double critical, int xp){
     	this.name = name;
         this.world = world;
         this.glyph = glyph;
@@ -26,6 +26,7 @@ public class Creature {
         this.attackValue = attack;
         this.defenseValue = defense;
         this.critical = critical;
+        this.xp = xp;
     }
     
 /* * * * * Attribute Setters * * * * * */
@@ -43,6 +44,9 @@ public class Creature {
     }
     public void setCrit(double crit) {
     	this.critical = crit;
+    }
+    public void setXp(int xp) {
+    	this.xp = xp;
     }
   
     
@@ -141,5 +145,8 @@ public class Creature {
     
     private double critical;
     public double critical() { return critical; }
+    
+    private int xp;
+    public int xp() { return xp; }
  
 }
