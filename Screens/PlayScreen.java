@@ -59,7 +59,7 @@ public class PlayScreen implements Screen {
 	 public void displayOutput(AsciiPanel terminal) {
 		 
 	        //Terminal Labels
-	        terminal.writeCenter("Current Exp: " + PlayerAi.xp, 22);
+	        terminal.writeCenter("Exp " + PlayerAi.xp + " / " + PlayerAi.reqXp, 22);
 	        terminal.writeCenter("-- press [escape] to lose or [enter] to win --", 23);
 	        String stats = String.format(" %3d/%3d hp", player.hp(), player.maxHp());
 	        terminal.write(stats, 1, 23);
@@ -70,7 +70,7 @@ public class PlayScreen implements Screen {
 	        terminal.write(player.glyph(), player.x - left, player.y - top, player.color());
 	        
 	        //Ready to level up?
-	        if (PlayerAi.xp == 2 ) {
+	        if (PlayerAi.xp >= PlayerAi.reqXp ) {
 	     		terminal.write("Time To Level!", 1, 20);
 	     		terminal.write("Press p", 1, 21);
 	     	}
