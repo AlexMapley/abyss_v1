@@ -42,10 +42,11 @@ public class PlayerAi extends CreatureAi {
 	public static int mana;
 	public static int stamina;
 	public static int xp;
+	public static int reqXp;
 	
 	//Passive Attributes
-	public static int Attack;
-	public static int Defense;
+	public static int attack;
+	public static int defense;
 	public static double critical;
 	public static int cunning;
 	public static int endurance;
