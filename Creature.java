@@ -59,12 +59,16 @@ public class Creature {
     //Move
     public void moveBy(int mx, int my){
     	Creature other = world.creature(x+mx, y+my);
-        if (other == null)
+        if (other == null) {
         	//Move
             ai.onEnter(x+mx, y+my, world.tile(x+mx, y+my));
-        else
-        	//Attack
+        }
+        else {
+        	//Creatures Attack Each Other
             attack(other);
+        	other.attack(this);
+        	PlayerAi.hp = this.hp;
+        }
     }
     
     //Dig
@@ -76,13 +80,12 @@ public class Creature {
     //Attack
     public void attack(Creature other){
         int amount = Math.max(0, attackValue() - other.defenseValue());
-        amount = (int)(Math.random() * amount) + 1;
+        amount = (int)(Math.random() * amount) + (attackValue()/10);
         	//Critical modifier
-        		int attz = attackValue();
-        		int chance = (int)(100/critical());
+        		int chance = (int)(100/critical() + 1);
         		Random rn = new Random();
         		int target = rn.nextInt(chance);
-        		if (target == 7) {
+        		if (target == chance/2) {
         			amount = amount * 3;
         			notify("Critical Hit! 3x Damage!");
         		} 
