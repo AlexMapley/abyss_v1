@@ -13,8 +13,6 @@ public class ReaperAi extends CreatureAi {
         if (tile.isGround()){
             creature.x = x;
             creature.y = y;
-        } else if (tile.isDiggable()) {
-            creature.dig(x, y);
         }
     }
     

@@ -15,7 +15,7 @@ public class CreatureFactory {
     
     //Player
     public Creature newPlayer(List<String> messages){
-        Creature player = new Creature(world, "Player", 'A', AsciiPanel.brightCyan, 0, 0, 0, 0, 0, 0);
+        Creature player = new Creature(world, "Player", 'A', AsciiPanel.brightWhite, 0, 0, 0, 0, 0, 0);
         
         //Set Player Stats
         player.setMaxHP(PlayerAi.maxHp);
@@ -52,7 +52,7 @@ public class CreatureFactory {
     
     //Mole
     public Creature newMole(){
-        Creature mole = new Creature(world, "Mole", 'M', AsciiPanel.brightWhite, 95, 12, 15, 12, 5, 12);
+        Creature mole = new Creature(world, "Mole", 'M', AsciiPanel.brightCyan, 95, 12, 15, 12, 5, 12);
         world.addAtEmptyLocation(mole);
         new MoleAi(mole);
         return mole;

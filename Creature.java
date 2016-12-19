@@ -77,8 +77,8 @@ public class Creature {
         	//Move
             ai.onEnter(x+mx, y+my, world.tile(x+mx, y+my));
         }
-        else if (this.name() != "Mole"){			//Moles killing other Creatures causes some
-        	//Creatures Attack Each Other				//concurrency issues...
+        else if (this.name() != "Mole" && this.name() != "Reaper"){			//Moles killing other Creatures causes some
+        	//Creatures Attack Each Other							//concurrency issues...
             attack(other);									//We'll make them peaceful instead
         	other.attack(this);
         	PlayerAi.hp = this.hp;
