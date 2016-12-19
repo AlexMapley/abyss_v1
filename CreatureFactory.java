@@ -42,7 +42,7 @@ public class CreatureFactory {
         return fungus;
     }
     
-  //Goblin
+    //Goblin
     public Creature newGoblin(){
         Creature goblin = new Creature(world, "Goblin", 'G', AsciiPanel.brightGreen, 45, 5, 10, 3, 0, 3);
         world.addAtEmptyLocation(goblin);
@@ -50,11 +50,18 @@ public class CreatureFactory {
         return goblin;
     }
     
-  //Mole
+    //Mole
     public Creature newMole(){
         Creature mole = new Creature(world, "Mole", 'M', AsciiPanel.brightWhite, 95, 12, 15, 12, 5, 12);
         world.addAtEmptyLocation(mole);
         new MoleAi(mole);
         return mole;
+    }
+    //Reaper
+    public Creature newReaper(){
+        Creature Reaper = new Creature(world, "Reaper", 'R', AsciiPanel.brightRed, 1000, 999, 100, 100, 10, 100000);
+        world.addAtEmptyLocation(Reaper);
+        new MoleAi(Reaper);
+        return Reaper;
     }
 }

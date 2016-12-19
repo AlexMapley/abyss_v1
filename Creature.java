@@ -95,7 +95,7 @@ public class Creature {
     public void attack(Creature other){
     	
         int amount = Math.max(0, attackValue() - other.defenseValue());
-        amount = (int)((Math.random() * amount) + (attackValue()/25));
+        amount = (int)Math.max(((Math.random() * amount)), amount*.5);
         	//Critical modifier
         		double critField = Math.random();
         		double critChance = critField - (critical()/100);

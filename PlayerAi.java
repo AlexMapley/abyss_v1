@@ -44,6 +44,7 @@ public class PlayerAi extends CreatureAi {
 	public static int stamina;
 	public static int xp;
 	public static int reqXp;
+	public static int level = 1;
 	
 	//Passive Attributes
 	public static int attack;
@@ -53,5 +54,6 @@ public class PlayerAi extends CreatureAi {
 	public static int endurance;
 	public static int luck;
 	public static int insight;
+	
 	
 }

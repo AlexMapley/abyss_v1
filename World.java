@@ -83,6 +83,9 @@ public class World {
 	    
 	    //Exp reward
 	    PlayerAi.xp += other.xp();
+	    
+	    //Reaper Moves
+	    update("Reaper");
 	}
 	
 	//Update
