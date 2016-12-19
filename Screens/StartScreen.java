@@ -8,6 +8,7 @@ public class StartScreen implements Screen {
 	  public void displayOutput(AsciiPanel terminal) {
 	        terminal.write("Key Bindings:", 1, 1);
 	        terminal.write("Press 'c' for character screen:", 1, 2);
+	        terminal.write("Press 'p' to level up:", 1, 3);
 	        terminal.writeCenter("-- press [enter] to start --", 22);
 	    }
 

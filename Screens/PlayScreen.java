@@ -46,12 +46,16 @@ public class PlayScreen implements Screen {
 		    player = creatureFactory.newPlayer(messages);
 		  
 		    //Make some Goblins
-		    for (int i = 0; i < 9; i++){
+		    for (int i = 0; i < 26; i++){
 		        creatureFactory.newGoblin();
 		    }
 		    //Make some Fungi
-		    for (int i = 0; i < 24; i++){
+		    for (int i = 0; i < 192; i++){
 		        creatureFactory.newFungus();
+		    }
+		  //Make some Moles
+		    for (int i = 0; i < 6; i++){
+		        creatureFactory.newMole();
 		    }
 		}
 	 
@@ -66,8 +70,13 @@ boolean levelup = false;
 	        //Terminal Labels
 	        terminal.writeCenter("Exp " + PlayerAi.xp + " / " + PlayerAi.reqXp, 22);
 	        terminal.writeCenter("-- press [escape] to lose or [enter] to win --", 23);
-	        String stats = String.format(" %3d/%3d hp", player.hp(), player.maxHp());
-	        terminal.write(stats, 1, 23);
+	        
+	        //Health / Mana
+	        String manaPool = String.format(" %3d/%3d MP", player.mana(), player.maxMana());
+	        terminal.write(manaPool, 1, 23);
+	        String healthPool = String.format(" %3d/%3d HP", player.hp(), player.maxHp());
+	        terminal.write(healthPool, 1, 22);
+	        
 	        
 	        int left = getScrollX();
 	        int top = getScrollY();
@@ -78,7 +87,7 @@ boolean levelup = false;
 	       
 	        //Ready to level up?
 	        if (PlayerAi.xp >= PlayerAi.reqXp ) {
-	     		terminal.write("Time To Level!", 1, 20);
+	     		terminal.write("Time To Level", 1, 20);
 	     		terminal.write("Press p", 1, 21);
 	     		levelup = true;
 	     	}
@@ -91,6 +100,7 @@ boolean levelup = false;
 	    }
 	 
 	    public Screen respondToUserInput(KeyEvent key) {
+	    	//Game over?
 	    	if (alive == false) { 
 	    		return new LoseScreen();
 	    	}
@@ -108,13 +118,15 @@ boolean levelup = false;
 	        case KeyEvent.VK_DOWN:
 	        case KeyEvent.VK_S: player.moveBy( 0, 1); break;
 	        }
-	      
+	        
 	        //Ready to level
 	        if (levelup == true) {
 	        	switch (key.getKeyCode()){
 		        case KeyEvent.VK_P: return new LevelUpScreen();
 	        	}
 	        }
+	        
+	        
 			return this;
 	    }
 	 

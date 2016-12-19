@@ -26,7 +26,7 @@ public class LevelUpScreen implements Screen{
 	        	PlayerAi.defense++;
 	        	
 	        	//Level cap Increase
-			 	PlayerAi.xp = 0;
+			 	PlayerAi.xp -= PlayerAi.reqXp;
 			 	PlayerAi.reqXp = (int)((PlayerAi.reqXp + 1)*1.1);
 			 	
 				return new PlayScreen();
