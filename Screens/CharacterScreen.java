@@ -14,6 +14,7 @@ public class CharacterScreen implements Screen{
 	        terminal.write("Attack: " + PlayerAi.attack, 1, 5);
 	        terminal.write("Defense: " + PlayerAi.defense, 1, 6);
 	        terminal.write("Critical: " + PlayerAi.critical +"%", 1, 7);
+	        terminal.write("Dodge: " + PlayerAi.dodge +"%", 1, 8);
 
 	        
 	        terminal.writeCenter("-- press [c] to return --", 22);

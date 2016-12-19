@@ -46,15 +46,15 @@ public class PlayScreen implements Screen {
 		    player = creatureFactory.newPlayer(messages);
 		  
 		    //Make some Goblins
-		    for (int i = 0; i < 26; i++){
+		    for (int i = 0; i < 52; i++){
 		        creatureFactory.newGoblin();
 		    }
 		    //Make some Fungi
-		    for (int i = 0; i < 192; i++){
+		    for (int i = 0; i < 384; i++){
 		        creatureFactory.newFungus();
 		    }
 		    //Make some Moles
-		    for (int i = 0; i < 6; i++){
+		    for (int i = 0; i < 12; i++){
 		        creatureFactory.newMole();
 		    }
 		    //Make the Reaper(s)
