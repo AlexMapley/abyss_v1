@@ -16,7 +16,7 @@ public class Creature {
     public Color color() { return color; }
 
     //Constructor
-    public Creature(World world, String name, char glyph, Color color, int maxHp, int maxMana ,int attack, int defense, double critical, int xp){
+    public Creature(World world, String name, char glyph, Color color, int maxHp, int maxMana ,int attack, int defense, double critical, double dodge, int xp){
     	//Generics
     	this.name = name;
         this.world = world;
@@ -58,8 +58,11 @@ public class Creature {
     public void setDef(int def) {
     	this.defenseValue = def;
     }
-    public void setCrit(double crit) {
-    	this.critical = crit;
+    public void setCrit(double critical) {
+    	this.critical = critical;
+    }
+    public void setDodge(double dodge) {
+    	this.dodge = dodge;
     }
     
   
@@ -96,12 +99,19 @@ public class Creature {
     	
         int amount = Math.max(0, attackValue() - other.defenseValue());
         amount = (int)Math.max(((Math.random() * amount)), amount*.5);
-        	//Critical modifier
+        	//CRITICAL modifier
         		double critField = Math.random();
         		double critChance = critField - (critical()/100);
         		if (critChance <= 0) {
         			amount = amount * 3;
         			notify("Critical Hit! 3x Damage!");
+        		} 
+        	//DODGE modifier
+        		double dodgeField = Math.random();
+        		double dodgeChance = dodgeField - (other.dodge()/100);
+        		if (dodgeChance <= 0) {
+        			amount = 0;
+        			notify("Dodge!");
         		} 
         		
         //Do damage
@@ -171,5 +181,8 @@ public class Creature {
     
     private double critical;
     public double critical() { return critical; }
+    
+    private double dodge;
+    public double dodge() { return dodge; }
  
 }

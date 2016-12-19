@@ -56,6 +56,7 @@ public class ApplicationMain extends JFrame implements KeyListener {
     	PlayerAi.attack = 10;
     	PlayerAi.defense = 0;
     	PlayerAi.critical= 10.00;
+    	PlayerAi.dodge = 5.00;
     	
     	
         ApplicationMain app = new ApplicationMain();

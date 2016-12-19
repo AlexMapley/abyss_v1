@@ -50,10 +50,7 @@ public class PlayerAi extends CreatureAi {
 	public static int attack;
 	public static int defense;
 	public static double critical;
-	public static int cunning;
-	public static int endurance;
-	public static int luck;
-	public static int insight;
+	public static double dodge;
 	
 	
 }
