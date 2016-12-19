@@ -6,11 +6,12 @@ import asciiPanel.AsciiPanel;
 
 public class LevelUpScreen implements Screen{
  	
+	 
 	 public void displayOutput(AsciiPanel terminal) {
-			
+		 	PlayerAi.level++;
 		 	
 		 
-	        terminal.write("Time to level up", 1, 1);
+	        terminal.write("You've Reached Level " + PlayerAi.level, 1, 1);
 	        
 	        terminal.write("Press 1 to Follow the Rogue Path", 1, 7);
 	        terminal.write("Press 2 to Follow the Knight Path", 1, 9);
@@ -21,7 +22,7 @@ public class LevelUpScreen implements Screen{
 	 	
 	    public Screen respondToUserInput(KeyEvent key) {
 	        if (key.getKeyCode() == KeyEvent.VK_1) {
-	        	PlayerAi.attack +=3;
+	        	PlayerAi.attack +=4;
 	        	PlayerAi.critical +=3;
 	        	PlayerAi.defense++;
 	        	
@@ -33,7 +34,7 @@ public class LevelUpScreen implements Screen{
 			
 				}
 	        if (key.getKeyCode() == KeyEvent.VK_2) {
-	        	PlayerAi.attack +=4;
+	        	PlayerAi.attack +=3;
 	        	PlayerAi.critical +=1;
 	        	PlayerAi.defense+=2;
 	        	

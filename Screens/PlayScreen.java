@@ -53,9 +53,13 @@ public class PlayScreen implements Screen {
 		    for (int i = 0; i < 192; i++){
 		        creatureFactory.newFungus();
 		    }
-		  //Make some Moles
+		    //Make some Moles
 		    for (int i = 0; i < 6; i++){
 		        creatureFactory.newMole();
+		    }
+		    //Make the Reaper(s)
+		    for (int i = 0; i < PlayerAi.level; i++){
+		        creatureFactory.newReaper();
 		    }
 		}
 	 
