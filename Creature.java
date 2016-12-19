@@ -16,25 +16,41 @@ public class Creature {
     public Color color() { return color; }
 
     //Constructor
-    public Creature(World world, String name, char glyph, Color color, int maxHp, int attack, int defense, double critical, int xp){
+    public Creature(World world, String name, char glyph, Color color, int maxHp, int maxMana ,int attack, int defense, double critical, int xp){
+    	//Generics
     	this.name = name;
         this.world = world;
         this.glyph = glyph;
         this.color = color;
+         
+        //Stats
         this.maxHp = maxHp;
         this.hp = maxHp;
+        this.maxMana = maxMana;
+        this.mana = maxMana;
+        this.xp = xp;
+        
+        //Attributes
         this.attackValue = attack;
         this.defenseValue = defense;
         this.critical = critical;
-        this.xp = xp;
     }
     
 /* * * * * Attribute Setters * * * * * */
-    public void setMaxHP(int MaxHP) {
-    	this.maxHp = MaxHP;
+    public void setMaxHP(int maxHP) {
+    	this.maxHp = maxHP;
     }
     public void setHP(int hp) {
     	this.hp = hp;
+    }
+    public void setMaxMana(int maxMana) {
+    	this.maxMana = maxMana;
+    }
+    public void setMana(int mana) {
+    	this.mana = mana;
+    }
+    public void setXp(int xp) {
+    	this.xp = xp;
     }
     public void setAtt(int att) {
     	this.attackValue = att;
@@ -45,9 +61,7 @@ public class Creature {
     public void setCrit(double crit) {
     	this.critical = crit;
     }
-    public void setXp(int xp) {
-    	this.xp = xp;
-    }
+    
   
     
     //Ai injector
@@ -63,9 +77,9 @@ public class Creature {
         	//Move
             ai.onEnter(x+mx, y+my, world.tile(x+mx, y+my));
         }
-        else {
-        	//Creatures Attack Each Other
-            attack(other);
+        else if (this.name() != "Mole"){			//Moles killing other Creatures causes some
+        	//Creatures Attack Each Other				//concurrency issues...
+            attack(other);									//We'll make them peaceful instead
         	other.attack(this);
         	PlayerAi.hp = this.hp;
         }
@@ -76,16 +90,16 @@ public class Creature {
         world.dig(wx, wy);
     }
     
-  
+    
     //Attack
     public void attack(Creature other){
+    	
         int amount = Math.max(0, attackValue() - other.defenseValue());
-        amount = (int)(Math.random() * amount) + (attackValue()/10);
+        amount = (int)((Math.random() * amount) + (attackValue()/25));
         	//Critical modifier
-        		int chance = (int)(100/critical() + 1);
-        		Random rn = new Random();
-        		int target = rn.nextInt(chance);
-        		if (target == chance/2) {
+        		double critField = Math.random();
+        		double critChance = critField - (critical()/100);
+        		if (critChance <= 0) {
         			amount = amount * 3;
         			notify("Critical Hit! 3x Damage!");
         		} 
@@ -94,6 +108,7 @@ public class Creature {
         other.modifyHp(-amount);
    
         //Move Enemy
+        Random rn = new Random();
 		int x = rn.nextInt(2);
 		int y = rn.nextInt(2);
 
@@ -104,11 +119,10 @@ public class Creature {
         	y = y -1;
         }
        other.moveBy(x, y);
-        
-        
-        
-        notify("You attack the '%s' for %d damage.", other.name, amount);
-        other.notify("The '%s' attacks you for %d damage.", glyph, amount);
+      
+        //Message
+        notify("You attack the %s for %d damage.", other.name, amount);
+        other.notify("The %s hits you for %d damage.", name, amount);
     }
     
     //Remove 
@@ -139,7 +153,16 @@ public class Creature {
 
     private int hp;
     public int hp() { return hp; }
+    
+    private int maxMana;
+    public int maxMana() { return maxMana; }
 
+    private int mana;
+    public int mana() { return mana; }
+    
+    private int xp;
+    public int xp() { return xp; }
+    
     private int attackValue;
     public int attackValue() { return attackValue; }
 
@@ -148,8 +171,5 @@ public class Creature {
     
     private double critical;
     public double critical() { return critical; }
-    
-    private int xp;
-    public int xp() { return xp; }
  
 }

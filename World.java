@@ -72,6 +72,9 @@ public class World {
 	public void dig(int x, int y) {
     if (tile(x,y).isDiggable())
         tiles[x][y] = Tile.FLOOR;
+    
+    	//Mole Movement
+    	update("Mole");
 	}
 	
 	//Remove
@@ -80,13 +83,14 @@ public class World {
 	    
 	    //Exp reward
 	    PlayerAi.xp += other.xp();
-	    
 	}
 	
 	//Update
-	public void update(){
+	public void update(String type){
 	    for (Creature creature : creatures){
-	        creature.update();
+	    	if (creature.name() == type) {
+	    		creature.update();
+	    	}
 	    }
 	}
 }

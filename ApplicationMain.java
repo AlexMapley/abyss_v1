@@ -44,26 +44,18 @@ public class ApplicationMain extends JFrame implements KeyListener {
     
 
     public static void main(String[] args) {
-    	//Starting Attributes
-    	PlayerAi.MaxHP = 95;
+    	//Starting Stats
+    	PlayerAi.maxHp = 95;
     	PlayerAi.hp = 75;
-    	PlayerAi.stamina = 20;
+    	PlayerAi.maxMana = 25;
     	PlayerAi.mana = 10;
-    	PlayerAi.attack = 10;
-    	PlayerAi.defense = 0;
-    	PlayerAi.critical= 10.00;
-    	
-    	
-    	
-    	
-    	PlayerAi.cunning = 3;
-    	PlayerAi.endurance = 3;
-    	PlayerAi.luck = 3;
-    	PlayerAi.insight = 3;
     	PlayerAi.xp = 0;
     	PlayerAi.reqXp = 1;
     	
-    	
+    	//Starting Attributes
+    	PlayerAi.attack = 10;
+    	PlayerAi.defense = 0;
+    	PlayerAi.critical= 10.00;
     	
     	
         ApplicationMain app = new ApplicationMain();

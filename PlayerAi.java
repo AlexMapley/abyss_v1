@@ -37,8 +37,9 @@ public class PlayerAi extends CreatureAi {
 /* * * * * Attributes * * * * * * * */
     
 	//Status Attributes
-    public static int MaxHP;
+    public static int maxHp;
 	public static int hp;
+	public static int maxMana;
 	public static int mana;
 	public static int stamina;
 	public static int xp;
@@ -52,5 +53,5 @@ public class PlayerAi extends CreatureAi {
 	public static int endurance;
 	public static int luck;
 	public static int insight;
-
+	
 }
