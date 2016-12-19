@@ -30,6 +30,3 @@ public class CharacterScreen implements Screen{
 }
 
 
-
-
-

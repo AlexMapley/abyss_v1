@@ -13,6 +13,7 @@ import asciiPanel.AsciiPanel;
 
 public class PlayScreen implements Screen {
 	
+/* * * * * * * * * * * * Envrionment Initialization * * * * * * * * * * * * */
 	 //Creates Our world
 	 private World world;
 	 private int screenWidth;
@@ -54,7 +55,11 @@ public class PlayScreen implements Screen {
 		    }
 		}
 	 
-	 
+/* * * * * * * Tracker Variables * * * * */
+//Are we alive?
+boolean alive = true;
+boolean levelup = false;
+
 /* * * * * * Output Display * * * * * * */
 	 public void displayOutput(AsciiPanel terminal) {
 		 
@@ -69,21 +74,29 @@ public class PlayScreen implements Screen {
 	        displayTiles(terminal, left, top);
 	        terminal.write(player.glyph(), player.x - left, player.y - top, player.color());
 	        
+	        /* * * * * * * * Events * * * * * * * * * */
+	       
 	        //Ready to level up?
 	        if (PlayerAi.xp >= PlayerAi.reqXp ) {
 	     		terminal.write("Time To Level!", 1, 20);
 	     		terminal.write("Press p", 1, 21);
+	     		levelup = true;
+	     	}
+	        if (PlayerAi.hp <= 0 ) {
+	     		alive = false;
 	     	}
 	        
+	        /* * * * * * * * * * * * * * * * * * * * */
 	        displayMessages(terminal, messages);
 	    }
 	 
 	    public Screen respondToUserInput(KeyEvent key) {
+	    	if (alive == false) { 
+	    		return new LoseScreen();
+	    	}
 	        switch (key.getKeyCode()){
-	        case KeyEvent.VK_ESCAPE: return new LoseScreen();
 	        case KeyEvent.VK_C: return new CharacterScreen();
 	        case KeyEvent.VK_ENTER: return new WinScreen();
-	        case KeyEvent.VK_P: return new LevelUpScreen();
 	        
 	        //Key bindings
 	        case KeyEvent.VK_LEFT:
@@ -95,15 +108,14 @@ public class PlayScreen implements Screen {
 	        case KeyEvent.VK_DOWN:
 	        case KeyEvent.VK_S: player.moveBy( 0, 1); break;
 	        }
-	        
-	        //Moving up or down a level
-	        switch (key.getKeyChar()){
-	        	case '<': player.moveBy( 0, 0); break;
-	        	case '>': player.moveBy( 0, 0); break;
+	      
+	        //Ready to level
+	        if (levelup == true) {
+	        	switch (key.getKeyCode()){
+		        case KeyEvent.VK_P: return new LevelUpScreen();
+	        	}
 	        }
-	        
-	    
-	        return this;
+			return this;
 	    }
 	 
 	 //Displays Tiles
