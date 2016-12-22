@@ -3,6 +3,8 @@ package Abyss;
 import java.awt.Color;
 import java.util.Random;
 
+import Abyss.Screens.PlayScreen;
+
 public class Creature {
     private World world;
 
@@ -16,7 +18,7 @@ public class Creature {
     public Color color() { return color; }
 
     //Constructor
-    public Creature(World world, String name, char glyph, Color color, int maxHp, int maxMana ,int attack, int defense, double critical, double dodge, int xp){
+    public Creature(World world, String name, char glyph, Color color, int maxHp, int maxMana, int xp, int attack, int defense, double critical, double dodge, int insight){
     	//Generics
     	this.name = name;
         this.world = world;
@@ -34,6 +36,7 @@ public class Creature {
         this.attackValue = attack;
         this.defenseValue = defense;
         this.critical = critical;
+        this.insight = insight;
     }
     
 /* * * * * Attribute Setters * * * * * */
@@ -64,6 +67,9 @@ public class Creature {
     public void setDodge(double dodge) {
     	this.dodge = dodge;
     }
+    public void setInsight(int insight) {
+    	this.insight = insight;
+    }
     
   
     
@@ -91,7 +97,8 @@ public class Creature {
     //Dig
     public void dig(int wx, int wy) {
         world.dig(wx, wy);
-    }
+        }
+    
     
     
     //Attack
@@ -114,8 +121,13 @@ public class Creature {
         			notify("Dodge!");
         		} 
         		
-        //Do damage
-        other.modifyHp(-amount);
+        //Do damage, and return Mana for possible a kill
+        int manaReturn = other.modifyHp(amount);
+        this.mana += manaReturn;
+        if (this.equals(PlayScreen.player)) {
+        	PlayerAi.mana += manaReturn;
+        }
+
    
         //Move Enemy
         Random rn = new Random();
@@ -135,12 +147,18 @@ public class Creature {
         other.notify("The %s hits you for %d damage.", name, amount);
     }
     
-    //Remove 
-    public void modifyHp(int amount) {
-        hp += amount;
-    
-        if (hp < 1)
+    /* Remove Method
+     * Needs to return an int for mana gained from killls
+     */
+    public int modifyHp(int amount) {
+        hp -= amount;
+        if (hp < 1) {
          world.remove(this);
+         return this.mana;
+        }
+        else {
+        	return 0;
+        }
     }
     
     //Update
@@ -153,6 +171,29 @@ public class Creature {
         ai.onNotify(String.format(message, params));
     }
 
+/* * * * * * * * * * * Spells * * * * * * * * * * * * * */
+    
+    //Heal
+    public void heal() {
+    //Mana Cost
+    if (mana < 10 || PlayerAi.mana < 10) {
+    	ai.onNotify("Too Little Mana To Cast Heal");
+    	return;
+    }
+    hp+=this.insightValue()*2;
+    PlayerAi.hp+=(this.insightValue()*2);
+    mana-=10;
+    PlayerAi.mana-=10;
+    
+    //Checks
+    if (hp > maxHp) {
+    	hp = maxHp;
+    }
+    if (PlayerAi.hp > PlayerAi.maxHp) {
+    	PlayerAi.hp = PlayerAi.maxHp;
+    }
+    }
+    
  
 /* * * * * * * * * * * * * * * * Attributes * * * * * * * * * * * * * * * * * * * * * */
     private String name;
@@ -184,5 +225,8 @@ public class Creature {
     
     private double dodge;
     public double dodge() { return dodge; }
+    
+    private int insight;
+    public int insightValue() { return insight; }
  
 }

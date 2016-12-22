@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import Abyss.Screens.PlayScreen;
+
 public class World {
 	private Tile[][] tiles;
     private int width;
@@ -72,9 +74,12 @@ public class World {
 	public void dig(int x, int y) {
     if (tile(x,y).isDiggable())
         tiles[x][y] = Tile.FLOOR;
-    
-    	//Mole Movement
-    	update("Mole");
+    	
+    	//If it was the player who dug, move the Moles
+    	if (PlayerAi.dug == true) {
+    		update("Mole");
+    		PlayerAi.dug = false;
+    	}
 	}
 	
 	//Remove
@@ -83,6 +88,11 @@ public class World {
 	    
 	    //Exp reward
 	    PlayerAi.xp += other.xp();
+	    
+	    //Makes sure mana doesn't exceed max Mana
+	    if (PlayerAi.mana > PlayerAi.maxMana) {
+	    	PlayerAi.mana = PlayerAi.maxMana;
+	    }
 	    
 	    //Reaper Moves
 	    update("Reaper");

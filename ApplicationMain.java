@@ -45,10 +45,10 @@ public class ApplicationMain extends JFrame implements KeyListener {
 
     public static void main(String[] args) {
     	//Starting Stats
-    	PlayerAi.maxHp = 95;
+    	PlayerAi.maxHp = 100;
     	PlayerAi.hp = 75;
-    	PlayerAi.maxMana = 25;
-    	PlayerAi.mana = 10;
+    	PlayerAi.maxMana = 95;
+    	PlayerAi.mana = 25;
     	PlayerAi.xp = 0;
     	PlayerAi.reqXp = 1;
     	
@@ -57,6 +57,7 @@ public class ApplicationMain extends JFrame implements KeyListener {
     	PlayerAi.defense = 0;
     	PlayerAi.critical= 10.00;
     	PlayerAi.dodge = 5.00;
+    	PlayerAi.insight = 5;
     	
     	
         ApplicationMain app = new ApplicationMain();

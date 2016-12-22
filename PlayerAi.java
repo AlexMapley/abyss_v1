@@ -19,12 +19,14 @@ public class PlayerAi extends CreatureAi {
 /* * * * * Abilties * * * * *  * * */
     
     //Movement
+    public static boolean dug = false;	//Keeps track of when the player digs
     public void onEnter(int x, int y, Tile tile){
         if (tile.isGround()){
             creature.x = x;
             creature.y = y;
         } else if (tile.isDiggable()) {
             creature.dig(x, y);
+            dug = true;
         }
     }
     
@@ -33,6 +35,9 @@ public class PlayerAi extends CreatureAi {
         messages.add(message);
     }
     
+    public void onUpdate(){
+    	
+    }
     
 /* * * * * Attributes * * * * * * * */
     
@@ -51,6 +56,7 @@ public class PlayerAi extends CreatureAi {
 	public static int defense;
 	public static double critical;
 	public static double dodge;
+	public static int insight;
 	
 	
 }
