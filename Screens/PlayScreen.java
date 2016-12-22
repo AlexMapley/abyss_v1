@@ -18,7 +18,7 @@ public class PlayScreen implements Screen {
 	 private World world;
 	 private int screenWidth;
 	 private int screenHeight;
-	 private Creature player;
+	 public static Creature player;
 	 
 	 private void createWorld(){
 		 world = new WorldBuilder(90, 31)
@@ -110,9 +110,8 @@ boolean levelup = false;
 	    	}
 	        switch (key.getKeyCode()){
 	        case KeyEvent.VK_C: return new CharacterScreen();
-	        case KeyEvent.VK_ENTER: return new WinScreen();
 	        
-	        //Key bindings
+	        //Movement
 	        case KeyEvent.VK_LEFT:
 	        case KeyEvent.VK_A: player.moveBy(-1, 0); break;
 	        case KeyEvent.VK_RIGHT:
@@ -121,6 +120,9 @@ boolean levelup = false;
 	        case KeyEvent.VK_W: player.moveBy( 0,-1); break;
 	        case KeyEvent.VK_DOWN:
 	        case KeyEvent.VK_S: player.moveBy( 0, 1); break;
+	        
+	        //Spells
+	        case KeyEvent.VK_1: player.heal();
 	        }
 	        
 	        //Ready to level
