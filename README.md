@@ -5,5 +5,8 @@ The basic strucutre of this game has been provided from the above mentioned tuto
 However, the project has since then diverged; all content updates since it's initial upload have been 
 the product of the contributors to this git.
 
-Thank you for taking the time to view this project,
-hopefully Abyss can turn into something amazing.
+# Roguelike Features
+- Randomly simulated floors
+- Global Turn based movements
+- Unique leveling class system
+- Changing environment over the course of the game
